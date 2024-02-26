@@ -1,6 +1,7 @@
 <template>
 	<div style="width: 100%;margin-bottom: 30px;background-color:#545c64">
-		<div style="width: 1300px;margin:0px auto;">
+		<div style="display:flex;width: 1300px;margin:0px auto;">
+			<h1 style="flex:0 0 auto;margin-right:50px;font-size:24px;color:#fff;">批发市场农产品销售管理系统</h1>
 			<el-menu class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff"
 				active-text-color="#ffd04b" style="width: 100%;">
 

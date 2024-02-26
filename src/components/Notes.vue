@@ -6,11 +6,11 @@
 		<div style="width: 1400px;margin: 0px auto;">
 
 
-			<div style="margin-top: 15px; width: 80%;margin: 0px auto; text-align: center;">
+			<!--<div style="margin-top: 15px; width: 80%;margin: 0px auto; text-align: center;">
 				<el-input placeholder="请输入商品名称搜索" v-model="goodsname">
 				</el-input>
 
-			</div>
+			</div>-->
 			<div class="lunbo" style="margin-top: 30px;">
 				<!-- 轮播 -->
 				<div class="focusPic">

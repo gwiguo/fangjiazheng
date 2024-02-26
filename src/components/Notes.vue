@@ -16,68 +16,19 @@
 				<div class="focusPic">
 					<div class="focus-ctrl" id="focus-ctrl">
 						<ul class="focus-ctrl-wrap">
-							<li class="current" @mouseenter="changeBanner($event,0)"><i class="item">占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位</i></li>
-							<li class="" @mouseenter="changeBanner($event,1)"><i class="item">占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位</i></li>
-							<li class="" @mouseenter="changeBanner($event,2)"><i class="item">占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位</i></li>
-							<li class="" @mouseenter="changeBanner($event,3)"><i class="item">占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位</i></li>
-							<li class="" @mouseenter="changeBanner($event,4)"><i class="item">占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位</i></li>
-							<li class="" @mouseenter="changeBanner($event,5)"><i class="item">占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位</i></li>
+							<li v-for="(item,index) in bannerList" :key="index" :class="index === 0 ? 'current' : ''" @mouseenter="changeBanner($event,index)">
+								<i class="item">{{ item.text }}</i>
+							</li>
 						</ul>
 					</div>
 					<div class="focus-filter">
-						<img class="pic"
-							src="../assets/li.jpg" alt="">
+						<img class="pic" :src="bannerList[0].imgSrc" alt="">
 					</div>
 					<div class="focus-pic" id="focus-slide">
 						<div class="slide-wrap">
 							<ul class="pics">
-								<li style="display: none;">
-									<a vlocation="banner"
-										href="https://pconline.pcvideo.com.cn/video-32761.html" target="_blank"
-										class="SensorLink"><img loading="lazy"
-											src="../assets/li.jpg"
-											alt="" width="100%" loaded="true"></a>
-									<i class="label-original"></i>
-								</li>
-								<li style="display: none;">
-									<a vlocation="banner"
-										href="https://pconline.pcvideo.com.cn/video-32749.html" target="_blank"
-										class="SensorLink"><img loading="lazy"
-											src="../assets/pingguo.jpg"
-											alt="" width="100%" loaded="true"></a>
-									<i class="label-original"></i>
-								</li>
-								<li style="display: none;">
-									<a vlocation="banner"
-										href="https://pconline.pcvideo.com.cn/video-32618.html" target="_blank"
-										class="SensorLink"><img loading="lazy"
-											src="../assets/jirou.jpg"
-											alt="" width="100%" loaded="true"></a>
-									<i class="label-original"></i>
-								</li>
-								<li style="display: list-item;">
-									<a vlocation="banner"
-										href="https://pconline.pcvideo.com.cn/video-32643.html" target="_blank"
-										class="SensorLink"><img loading="lazy"
-											src="../assets/yizi.jpg"
-											alt="" width="100%" loaded="true"></a>
-									<i class="label-original"></i>
-								</li>
-								<li style="display: none;">
-									<a vlocation="banner"
-										href="//pconline.pcvideo.com.cn/video-32615.html" target="_blank"
-										class="SensorLink"><img loading="lazy"
-											src="../assets/niujianzi.jpg"
-											alt="" width="100%" loaded="true"></a>
-									<i class="label-original"></i>
-								</li>
-								<li style="display: none;">
-									<a vlocation="banner"
-										href="https://pconline.pcvideo.com.cn/video-32495.html" target="_blank"
-										class="SensorLink"><img loading="lazy"
-											src="../assets/peigen.jpg"
-											alt="" width="100%" loaded="true"></a>
-									<i class="label-original"></i>
+								<li :style="index === 0 ? 'display:block;' : '' " v-for="(item,index) in bannerList" :key="index">
+									<img loading="lazy"	:src="item.imgSrc" alt="" width="100%" loaded="true">
 								</li>
 							</ul>
 						</div>
@@ -161,7 +112,39 @@ export default {
 			showPingjia: false,
 			pingjia: [],
 			users: {},
-			card: {}
+			card: {},
+			bannerList:[
+				{
+					imgSrc:require("../assets/li.jpg"),
+					text:"占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位",
+					href:""
+				},
+				{
+					imgSrc:require("../assets/pingguo.jpg"),
+					text:"占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位222",
+					href:"https://www.baidu.com"
+				},
+				{
+					imgSrc:require("../assets/jirou.jpg"),
+					text:"占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位",
+					href:""
+				},
+				{
+					imgSrc:require("../assets/yizi.jpg"),
+					text:"占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位",
+					href:""
+				},
+				{
+					imgSrc:require("../assets/niujianzi.jpg"),
+					text:"占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位",
+					href:""
+				},
+				{
+					imgSrc:require("../assets/peigen.jpg"),
+					text:"占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位",
+					href:""
+				}
+			]
 		}
 	},
 	created() {
@@ -259,19 +242,18 @@ export default {
 				this.goodsList = res.data;
 			});
 		},
-    changeBanner(e,i){
-      [...document.querySelectorAll(".focus-ctrl-wrap > li")].forEach(li=>{
-        li.setAttribute("class","")
-      });
-      [...document.querySelectorAll(".pics li")].forEach(li=>{
-        li.style.display = "none"
-      })
-
-      
-      e.target.setAttribute("class","current")
-      document.querySelectorAll(".pics li")[i].style.display = 'list-item'
-      document.querySelector(".focus-filter .pic").src = document.querySelectorAll(".pics li img")[i].src
-    }
+		changeBanner(e,i){
+			[...document.querySelectorAll(".focus-ctrl-wrap > li")].forEach(li=>{
+				li.setAttribute("class","")
+			});
+			[...document.querySelectorAll(".pics li")].forEach(li=>{
+				li.style.display = "none"
+			})
+			
+			e.target.setAttribute("class","current")
+			document.querySelectorAll(".pics li")[i].style.display = 'list-item'
+			document.querySelector(".focus-filter .pic").src = document.querySelectorAll(".pics li img")[i].src
+		}
 	}
 }
 </script>
@@ -343,7 +325,7 @@ export default {
 .focus-ctrl::before {
     width: 100%;
     height: 520px;
-    background-image: linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+    background-image: linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.1) 100%);
     left: 0;
     top: 0;
 }
